@@ -5,24 +5,6 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate
 
 
-
-class JSONMixin(object):
-    """
-    A mixin that renders the response as JSON.
-    """
-    response_class = HttpResponse
-
-    def render_to_response(self, context, **response_kwargs):
-        """
-        Returns json response.
-        """
-        response_kwargs['content_type'] = 'application/json'
-        return self.response_class(
-                json.dumps(context),
-                **response_kwargs
-                )
-
-
 class BasicAuthRequiredMixin(object):
     """
     A mixin that will make sure the request is authenticated using BasicAuth.
